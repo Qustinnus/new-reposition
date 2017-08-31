@@ -2715,7 +2715,7 @@ var/list/the_station_areas = list (
 		spawn(60) .()
 
 /area/winterstorm
-	var/turf/simulated/floor/plating/snow
+	has_gravity = 1
 
 /area/winterstorm/crashed_shuttle
 	icon_state = "blue"

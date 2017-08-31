@@ -595,6 +595,7 @@ proc/setup_database_connection()
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 proc/establish_db_connection()
+	return
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
