@@ -2057,5 +2057,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\ows\winterstorm1.dmm"
+#include "maps\ows\winterstorm3.dmm"
 // END_INCLUDE

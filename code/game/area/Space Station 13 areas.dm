@@ -2719,6 +2719,7 @@ var/list/the_station_areas = list (
 
 /area/winterstorm/crashed_shuttle
 	icon_state = "blue"
+	requires_power = 0
 
 /area/winterstorm/crashed_pod_1
 	icon_state = "blue"
