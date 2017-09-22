@@ -64,24 +64,24 @@
 		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
 				mover.visible_message(
-					"\The [mover] falls from the deck above through \the [below]!",
+					"\The [mover] falls from the floor above through \the [below]!",
 					"You hear a whoosh of displaced air."
 				)
 			else
 				mover.visible_message(
-					"\The [mover] falls from the deck above and slams into \the [below]!",
-					"You hear something slam into the deck."
+					"\The [mover] falls from the floor above and slams into \the [below]!",
+					"You hear something slam into the floor."
 				)
 		else
 			var/mob/M = mover
 			if(istype(below, /turf/simulated/open))
 				below.visible_message(
-					"\The [mover] falls from the deck above through \the [below]!",
+					"\The [mover] falls from the floor above through \the [below]!",
 					"You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]"
 				)
 			else
 				M.visible_message(
-					"\The [mover] falls from the deck above and slams into \the [below]!",
+					"\The [mover] falls from the floor above and slams into \the [below]!",
 					"You land on \the [below].", "You hear a soft whoosh and a crunch"
 				)
 
@@ -137,3 +137,17 @@
 			return
 		else
 			user << "<span class='warning'>The plating is going to need some support.</span>"
+
+/turf/simulated/open/attack_hand(mob/living/user as mob)
+	if(!istype(below)) //make sure that there is actually something below
+		below = GetBelow(src)
+		if(!below)
+			return
+	user << "<span class='notice'>You start climbing down to the area below</span>"
+	below.visible_message("You notice \The [user] climbing down from above")
+	if(do_after(user, 50, src)) //How long it takes the player to climb down.
+		if(istype(below, /turf/simulated/open))
+			user << "<span class='notice'>You fail to climb down to the area below</span>"
+		else
+			user << "<span class='notice'>You succesfuly climb to the area below</span>"
+		user.forceMove(below)
