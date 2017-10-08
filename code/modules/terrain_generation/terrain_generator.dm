@@ -5,19 +5,19 @@
 	var/list/cells = list()
 	var/has_gravity = 1
 	var/ruins = 1
+	var/list/possible_biomes = list(/datum/biome/dirt = 2, /datum/biome/icelake = 3, /datum/biome/lake = 3, /datum/biome/snowy_plains = 5, /datum/biome/snowy_plains = 5 , /datum/biome/snowy_forest = 5, /datum/biome/snowy_forest_dense = 5)
 
 /obj/structure/terrain_generator/New()
 	pick_biomes()
 	generate_cells()
 
 /obj/structure/terrain_generator/proc/pick_biomes()
-	for(var/I in 1 to 100)
+	for(var/I in 10 to 100)
 		cells += new /datum/biome_cell
 	var/list/unused_cells = cells.Copy()
-	var/possible_biomes = typesof(/datum/biome) - /datum/biome
 
-	for(var/i in 1 to rand(2,6))
-		var/biometype = pick(possible_biomes)
+	for(var/i in 1 to rand(6,20))
+		var/biometype = pickweight(possible_biomes)
 		var/datum/biome/B = new biometype
 		B.center_x = rand(1,world.maxx)
 		B.center_y = rand(1,world.maxy)
@@ -65,9 +65,20 @@
 				B.turfs += T
 				if(istype(T,/turf/simulated))
 					if(B.flora_density && B.flora_types)
-						if(prob(B.flora_density))
-							var/obj/structure/flora = pick(B.flora_types)
-							new flora(T)
+						generate_flora(B, T)
+					if(B.fauna_density && B.fauna_types)
+						generate_fauna(B, T)
+
+/obj/structure/terrain_generator/proc/generate_flora(var/datum/biome/B, var/turf/T)
+	if(prob(B.flora_density))
+		var/obj/structure/flora = pick(B.flora_types)
+		new flora(T)
+
+/obj/structure/terrain_generator/proc/generate_fauna(var/datum/biome/B, var/turf/T)
+	if(prob(B.fauna_density))
+		var/mob/fauna = pick(B.fauna_types)
+		new fauna(T)
+
 
 /turf/open/genturf
 	name = "ungenerated turf"
