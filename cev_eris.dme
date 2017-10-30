@@ -1577,6 +1577,7 @@
 #include "code\modules\multiz\pipes.dm"
 #include "code\modules\multiz\shadow.dm"
 #include "code\modules\multiz\structures.dm"
+#include "code\modules\multiz\travel.dm"
 #include "code\modules\multiz\turf.dm"
 #include "code\modules\nano\_JSON.dm"
 #include "code\modules\nano\JSON Reader.dm"
