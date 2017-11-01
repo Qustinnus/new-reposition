@@ -2010,8 +2010,6 @@
 #include "code\modules\tables\rack.dm"
 #include "code\modules\tables\tables.dm"
 #include "code\modules\tables\update_triggers.dm"
-#include "code\modules\terrain_generation\biome.dm"
-#include "code\modules\terrain_generation\terrain_generator.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\train.dm"
 #include "code\modules\vehicles\vehicle.dm"
